@@ -3,7 +3,7 @@ import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 
-def load_corpus(corpus_dir = "docs"):
+def load_corpus(corpus_dir = "docs"):   # Load text files from a directory into a dictionary and return it
     corpus = {}
     for filepath in glob.glob(os.path.join(corpus_dir, '*.txt')):
         with open(filepath, 'r', encoding='utf-8') as file:
@@ -11,7 +11,7 @@ def load_corpus(corpus_dir = "docs"):
             corpus[doc_id] = file.read()
     return corpus
 
-def chunk_text(text, chunk_size=500, overlap=50):
+def chunk_text(text, chunk_size=500, overlap=50): # Split text into overlapping chunks
     words = text.split()
     chunks = []
     for i in range(0, len(words), chunk_size - overlap):
@@ -19,7 +19,7 @@ def chunk_text(text, chunk_size=500, overlap=50):
         chunks.append(chunk)
     return chunks
 
-def build_chunks(corpus, chunk_size=500, overlap=50):
+def build_chunks(corpus, chunk_size=500, overlap=50): # Build overlapping chunks for each document in the corpus
     chunked_corpus = []
     for doc_id, text in corpus.items():
         chunks = chunk_text(text, chunk_size, overlap)
