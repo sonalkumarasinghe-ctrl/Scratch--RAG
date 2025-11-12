@@ -2,8 +2,9 @@ import os,glob,json
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
-# from fastapi import FastAPI
+from fastapi import FastAPI
 from pydantic import BaseModel  
+
 
 app=FastAPI()
 
